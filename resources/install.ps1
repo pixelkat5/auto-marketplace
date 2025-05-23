@@ -127,16 +127,6 @@ $Parameters = @{
 Invoke-WebRequest @Parameters
 
 Write-Host -Object 'Applying...' -ForegroundColor 'Cyan'
-if ($isThemeInstalled -and ($currentTheme -ne 'marketplace')) {
-    $Host.UI.RawUI.Flushinputbuffer()
-    $choice = $Host.UI.PromptForChoice(
-        'Local theme found',
-        'Do you want to replace it with a placeholder to install themes from the Marketplace?',
-        ('&Yes', '&No'),
-        0
-    )
-    if ($choice = 1) { $setTheme = $false }
-}
 if ($setTheme) {
     Invoke-Spicetify "config" "current_theme" "marketplace"
 }
